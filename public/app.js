@@ -1,3 +1,4 @@
+import {micromark} from 'https://esm.sh/micromark@3?bundle'
 const form = document.getElementById("chatForm");
 const input = document.getElementById("promptInput");
 const btn = document.getElementById("submitBtn");
@@ -46,11 +47,15 @@ form.addEventListener("submit", async (e) => {
         });
 
         const data = await response.json();
+        console.log(micromark(data))
 
         loading.textContent = "";
 
-        const responseText = document.createElement("p");
-        responseText.textContent = data.message || "Geen antwoord.";
+        // const responseText = document.createElement("p");
+        // responseText.textContent = data.message || "Geen antwoord.";
+
+        const responseText = document.createElement("div");
+        responseText.innerHTML = micromark(data.message || "Geen antwoord.");
 
         const tokenText = document.createElement("p");
         tokenText.textContent = `Tokens: ${data.tokens ?? 0}`;

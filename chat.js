@@ -3,13 +3,14 @@
 import { AzureChatOpenAI } from "@langchain/openai"
 import { SystemMessage, HumanMessage, AIMessage } from "@langchain/core/messages";
 
+
 import * as z from "zod";
 
-const Todo = z.object({
-    todo: z.array(z.string()).describe("List with todo items")
-});
-
-const modelWithStructure = model.withStructuredOutput(Todo);
+// const Todo = z.object({
+//     todo: z.array(z.string()).describe("List with todo items")
+// });
+//
+// const modelWithStructure = model.withStructuredOutput(Todo);
 
 const model = new AzureChatOpenAI({
     temperature: 1
